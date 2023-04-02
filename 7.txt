@@ -1,0 +1,203 @@
+In this graph there has 9 vertex and 15 edges
+Now represent the graph is adjacency list we get,
+
+A -> (B,2) (C,1) (I,18) (J,5)
+B -> (A,2) (C,7) (E,20) (F,13) (H,15) (J,6)
+C -> (A,1) (B,7) (E,9)
+E -> (B,20) (E,9) (G,5)
+F -> (B,13) (G,1) (H,21)
+G -> (E,5) (F,1)
+H -> (B,15) (F,21) (I,7)
+I -> (A,18) (H,7) (J,6)
+J -> (A,5) (B,6) (I,6)
+
+Now the source node is E. the table below represent the Dijkstra algorithm:
+
+
+ From this table we can tell the shortest distance from source node E
+A =10
+B=12
+C=9
+E=0
+F=6
+G=5
+H=27
+I=21
+J=15
+
+To find the shortest distance from node E to every other node using the Dijkstra algorithm with a priority queue, we can follow these steps:
+
+Initialize the distance of all nodes from the source node E as infinity except for the distance of E itself, which is 0.
+Add E to the priority queue with a priority of 0.
+While the priority queue is not empty, do the following:
+Extract the node with the minimum priority from the priority queue.
+For each neighbor of the extracted node, do the following:
+If the distance to the neighbor through the extracted node is less than the current distance of the neighbor, update the distance of the neighbor.
+Add the neighbor to the priority queue with a priority equal to its updated distance.
+The final distances of all nodes from the source node E are the shortest distances.
+
+
+Below are all the step:
+
+Step 1: Initialize the distances from E to all other nodes as infinity, except for the distance from E to itself which is 0. We also create a priority queue to store the unvisited nodes and their tentative distances.
+
+E: 0
+A: infinity
+B: infinity
+C: infinity
+F: infinity
+G: infinity
+H: infinity
+I: infinity
+J: infinity
+
+Priority Queue: (E,0)
+Step 2: Take the node with the minimum tentative distance from the priority queue. In the beginning, it will be E since its distance is 0.
+
+E: 0 (visited)
+Priority Queue:
+
+Step 3: For each neighbor of the current node (E), calculate the tentative distance to that neighbor by adding the weight of the edge between the current node and the neighbor to the current node's tentative distance. If this tentative distance is less than the neighbor's current tentative distance, update the neighbor's tentative distance in the priority queue.
+
+E's neighbors: (B,20) (E,9) (G,5)
+B: tentative distance = 0 + 20 = 20 > infinity, update B's tentative distance to 20
+G: tentative distance = 0 + 5 = 5 < infinity, update G's tentative distance to 5
+E: tentative distance = 0 + 9 = 9 < infinity, update E's tentative distance to 9
+Priority Queue: (G,5) (E,9) (B,20)
+
+Step 4: Take the node with the minimum tentative distance from the priority queue. In this case, it is G since its tentative distance is the smallest.
+
+E: 0 (visited)
+G: 5 (visited)
+Priority Queue: (E,9) (B,20)
+
+Step 5: Repeat step 3 for the neighbors of the current node (G).
+
+G's neighbors: (E,5) (F,1)
+E: tentative distance = 5 + 5 = 10 < 9, update E's tentative distance to 10
+F: tentative distance = 5 + 1 = 6 < infinity, update F's tentative distance to 6
+Priority Queue: (E,10) (F,6) (B,20)
+
+Step 6: Take the node with the minimum tentative distance from the priority queue. In this case, it is F since its tentative distance is the smallest.
+
+E: 0 (visited)
+G: 5 (visited)
+F: 6 (visited)
+Priority Queue: (E,10) (B,20)
+
+Step 7: Repeat step 3 for the neighbors of the current node (F).
+
+F's neighbors: (B,13) (G,1) (H,21)
+B: tentative distance = 6 + 13 = 19 < 20, update B's tentative distance to 19
+G: tentative distance = 6 + 1 = 7 < 5, update G's tentative distance to 7
+H: tentative distance = 6 + 21 = 27 < infinity, update H's tentative distance to 27
+Priority Queue: (G,7) (E,10) (B,19) (H,27)
+
+Step 8: Take the node with the minimum tentative distance from the priority queue. In this case, it is G since its tentative distance is the smallest
+E: 0 (visited)
+G: 5 (visited)
+F: 6 (visited)
+G: 7 (visited)
+Priority Queue: (E,10) (B,19) (H,27)
+
+Step 9: Repeat step 3 for the neighbors of the current node (G).
+
+G's neighbors: (E,5) (F,1)
+E: tentative distance = 7 + 5 = 12 < 10, update E's tentative distance to 12
+F: tentative distance = 7 + 1 = 8 < 6, update F's tentative distance to 8
+Priority Queue: (F,8) (E,12) (B,19) (H,27)
+
+Step 10: Take the node with the minimum tentative distance from the priority queue. In this case, it is F since its tentative distance is the smallest.
+
+E: 0 (visited)
+G: 5 (visited)
+F: 6 (visited)
+G: 7 (visited)
+F: 8 (visited)
+Priority Queue: (E,12) (B,19) (H,27)
+
+Step 11: Repeat step 3 for the neighbors of the current node (F).
+
+F's neighbors: (B,13) (G,1) (H,21)
+B: tentative distance = 8 + 13 = 21 > 19, no update needed
+G: tentative distance = 8 + 1 = 9 < 7, update G's tentative distance to 9
+H: tentative distance = 8 + 21 = 29 > 27, no update needed
+Priority Queue: (E,12) (G,9) (B,19) (H,27)
+
+Step 12: Take the node with the minimum tentative distance from the priority queue. In this case, it is G since its tentative distance is the smallest.
+
+E: 0 (visited)
+G: 5 (visited)
+F: 6 (visited)
+G: 7 (visited)
+F: 8 (visited)
+G: 9 (visited)
+Priority Queue: (E,12) (B,19) (H,27)
+
+Step 13: Repeat step 3 for the neighbors of the current node (G).
+
+G's neighbors: (E,5) (F,1)
+E: tentative distance = 9 + 5 = 14 < 12, update E's tentative distance to 14
+F: tentative distance = 9 + 1 = 10 < 8, update F's tentative distance to 10
+Priority Queue: (F,10) (E,14) (B,19) (H,27)
+
+Step 14: Take the node with the minimum tentative distance from the priority queue. In this case, it is F since its tentative distance is the smallest.
+
+E: 0 (visited)
+G: 5 (visited)
+F: 6 (visited)
+G: 7 (visited)
+F: 8 (visited)
+G: 9 (visited)
+F: 10 (visited)
+Priority Queue: (E,14) (B,19) (H,27)
+
+Step 15: Repeat step 3 for the neighbors of the current node (F).
+
+F's neighbors: (B,13) (G,1) (H,21)
+B: tentative distance = 10 + 13 = 23 > 19, no update needed
+G: tentative distance = 10 + 1 = 12 < 5, no update needed
+H: tentative distance = 10 + 21 = 31 > 27, no update needed
+Priority Queue: (E,14) (B,16) (H,27)
+
+Step 16: Take the node with the minimum tentative distance from the priority queue. In this case, it is E since its tentative distance is the smallest.
+
+E: 0 (visited)
+G: 5 (visited)
+F: 6 (visited)
+G: 7 (visited)
+F: 8 (visited)
+G: 9 (visited)
+F: 10 (visited)
+B: 16 (visited)
+Priority Queue: (H,27)
+
+Step 17: Repeat step 3 for the neighbors of the current node (B).
+
+B's neighbors: (A,2) (C,7) (E,20) (F,13) (H,15) (J,6)
+A: tentative distance = 16 + 2 = 18 > 10, no update needed
+C: tentative distance = 16 + 7 = 23 > 9, no update needed
+E: tentative distance = 16 + 20 = 36 > 12, no update needed
+F: tentative distance = 16 + 13 = 29 > 10, no update needed
+H: tentative distance = 16 + 15 = 31 > 27, no update needed
+J: tentative distance = 16 + 6 = 22 > 15, no update needed
+Priority Queue: (H,27)
+
+Step 18: Take the node with the minimum tentative distance from the priority queue. In this case, it is H since its tentative distance is the smallest.
+
+E:
+0(visited)
+    G : 5(visited)
+        F : 6(visited)
+            G : 7(visited)
+                F : 8(visited)
+                    G : 9(visited)
+                        F : 10(visited)
+                            B : 16(visited)
+                                H : 27(visited)
+                                    Priority Queue : empty
+
+                                                     Step 19 : All nodes have been visited,
+                                                               so we have found the shortest distance from node E to every other node in the graph :
+
+    A : 10 B : 12 C : 9 E : 0 F : 6 G : 5 H : 27 I : 21 J : 15

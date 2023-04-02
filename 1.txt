@@ -1,0 +1,26 @@
+                                                                       a 
+                                           Advantages of Breadth-First Search (BFS):
+
+Guaranteed to find the shortest path: BFS algorithm explores all the neighboring nodes of a given node before proceeding to the next level. This guarantees that the shortest path will be found, as it explores all possible paths in order of increasing distance from the starting node.
+
+Completeness: BFS is guaranteed to find a solution if one exists, given that the graph is finite and there is a path to the goal node. It explores all possible paths before giving up, which ensures that it will find a solution if one exists.
+
+                                                 Advantages of Depth-First Search (DFS):
+
+Space efficiency: DFS uses less memory than BFS because it only needs to store the path from the starting node to the current node, whereas BFS must store all the visited nodes and their paths.
+
+Can be implemented recursively: DFS can be implemented recursively which makes the code more elegant and easy to read.
+
+
+
+
+                                                                                                    b) 
+                                                                         Disadvantages of BFS:
+
+Requires more memory: BFS stores all the visited nodes in memory, which can become a problem for large graphs or when the memory is limited.
+
+
+                                                                      Disadvantages of DFS:
+
+May not find the shortest path: DFS does not guarantee that the shortest path will be found. It explores one branch of the tree as deeply as possible before backtracking. This can result in finding a longer path before a shorter one.
+

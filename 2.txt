@@ -1,0 +1,29 @@
+       There are several ways to represent a graph, including:
+
+                                                                        1. Adjacency Matrix:
+An adjacency matrix is a two-dimensional array that stores information about the edges of a graph. The element at row i and column j represents the presence or absence of an edge between vertex i and vertex j. For an undirected graph, the matrix is symmetric along the diagonal. For example, consider the following undirected graph:
+
+Example: 
+ 1 —- 2
+|    |
+3 -- 4
+The corresponding adjacency matrix would be:
+   | 1 2 3 4
+---+--------
+ 1 | 0 1 1 0
+ 2 | 1 0 0 1
+ 3 | 1 0 0 1
+ 4 | 0 1 1 0
+
+                                                                                2. Adjacency List:
+An adjacency list is a collection of unordered lists, where each list represents the set of neighbors of a vertex in a graph. For example, the adjacency list for the above graph would be:
+
+1: 2, 3
+2: 1, 4
+3: 1, 4
+4: 2, 3
+
+                                                                                       3. Edge List:
+An edge list is a collection of all the edges in a graph, represented as pairs of vertices. For example, the edge list for the above graph would be:
+
+(1, 2), (1, 3), (2, 4), (3, 4)
